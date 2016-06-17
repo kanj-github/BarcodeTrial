@@ -20,10 +20,8 @@ public class MainActivity extends AppCompatActivity {
     private int count;
     private SwipeButton btn;
     private static final String PERMISSIONS[] = {
-            Manifest.permission.CAMERA,
-            Manifest.permission.READ_EXTERNAL_STORAGE,
-            Manifest.permission.WRITE_EXTERNAL_STORAGE,
-            Manifest.permission.VIBRATE,
+            Manifest.permission.ACCESS_COARSE_LOCATION,
+            Manifest.permission.ACCESS_FINE_LOCATION,
     };
 
     @Override
@@ -53,16 +51,10 @@ public class MainActivity extends AppCompatActivity {
 
         // Check permissions for M concept
         boolean gotPermissions = true;
-        if (ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             gotPermissions = false;
         }
-        if (ContextCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
-            gotPermissions = false;
-        }
-        if (ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
-            gotPermissions = false;
-        }
-        if (ContextCompat.checkSelfPermission(this, Manifest.permission.VIBRATE) != PackageManager.PERMISSION_GRANTED) {
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             gotPermissions = false;
         }
 
@@ -77,13 +69,15 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void startScan(View v) {
+        Intent i = new Intent(this, MapsActivity.class);
+        startActivity(i);
         // Launched stolen zxing app
         /*Intent intent = new Intent("com.opinio.zxing.client.android.SCAN");
         intent.putExtra("SCAN_MODE", "ONE_D_MODE");
         startActivityForResult(intent, 0);*/
         // Launch ZXing app
-        IntentIntegrator scanIntent = new IntentIntegrator(this);
-        scanIntent.initiateScan();
+        /*IntentIntegrator scanIntent = new IntentIntegrator(this);
+        scanIntent.initiateScan();*/
         /*new Thread(new Runnable() {
             @Override
             public void run() {
