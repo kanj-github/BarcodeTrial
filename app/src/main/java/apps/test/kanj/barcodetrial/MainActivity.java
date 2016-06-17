@@ -82,8 +82,8 @@ public class MainActivity extends AppCompatActivity {
         intent.putExtra("SCAN_MODE", "ONE_D_MODE");
         startActivityForResult(intent, 0);*/
         // Launch ZXing app
-        /*IntentIntegrator scanIntent = new IntentIntegrator(this);
-        scanIntent.initiateScan();*/
+        IntentIntegrator scanIntent = new IntentIntegrator(this);
+        scanIntent.initiateScan();
         /*new Thread(new Runnable() {
             @Override
             public void run() {

@@ -28,7 +28,6 @@ public class SwipeButton extends Button {
     private float x1, swipeStartX;
     private boolean swiping, thresholdCrossed, swipeTextShown;
     private String originalButtonText;
-    private Drawable originalBackground;
 
     private ValueAnimator animation;
 
@@ -59,10 +58,10 @@ public class SwipeButton extends Button {
 
     @Override
     protected void onAttachedToWindow() {
-        Log.v("Kanj", "onAttachedToWindow");
         super.onAttachedToWindow();
         animation = ValueAnimator.ofFloat(0f, 1f);
-        animation.setDuration(1000);
+        animation.setDuration(3000);
+        animation.setRepeatCount(ValueAnimator.INFINITE);
         animation.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
             public void onAnimationUpdate(ValueAnimator animation) {
@@ -89,9 +88,8 @@ public class SwipeButton extends Button {
                 // Initialise everything
                 x1 = event.getX();
                 originalButtonText = this.getText().toString();
-                originalBackground = this.getBackground();
                 thresholdCrossed = false;
-                animation.end();
+                animation.cancel();
                 if (!swipeTextShown) {
                     this.setText(">> Swipe >>");
                     swipeTextShown = true;
