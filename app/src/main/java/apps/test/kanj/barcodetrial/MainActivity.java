@@ -3,6 +3,7 @@ package apps.test.kanj.barcodetrial;
 import android.Manifest;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
@@ -78,28 +79,16 @@ public class MainActivity extends AppCompatActivity {
         // Launch ZXing app
         /*IntentIntegrator scanIntent = new IntentIntegrator(this);
         scanIntent.initiateScan();*/
-        /*new Thread(new Runnable() {
-            @Override
-            public void run() {
-                try {
-                    Thread.sleep(4000);
-                    runOnUiThread(new Runnable() {
-                        @Override
-                        public void run() {
-                            Log.v("Kanj", "Running on UI thread");
-                            if (btn != null) {
-                                btn.setText("Set");
-                            } else {
-                                Log.v("Kanj", "Button points to null");
-                            }
-                        }
-                    });
-                } catch (InterruptedException ie) {
-                    Log.v("Kanj", "Sleep interrupted");
-                }
-            }
-        }).start();
-        Intent i = new Intent(this, TestService.class);
+        /*new Handler().postDelayed(
+                new Runnable() {
+                    @Override
+                    public void run() {
+                        btn.setText("Set");
+                    }
+                },
+                2000
+        );*/
+        /*Intent i = new Intent(this, TestService.class);
         i.putExtra("extra", ""+count++);
         startService(i);*/
     }
